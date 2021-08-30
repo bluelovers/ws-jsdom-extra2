@@ -1,0 +1,53 @@
+{
+  "name": "ws-jsdom-extra2",
+  "version": "1.0.0",
+  "private": true,
+  "keywords": [],
+  "workspaces": [
+    "packages/*",
+    "packages/@jsdom-extra/*"
+  ],
+  "scripts": {
+    "test": "yarn-tool ws run test",
+    "install:reset-lockfile": "yarn-tool install --reset-lockfile",
+    "lerna:publish": "yarn run prepublishOnly:root && lerna publish && yarn run postpublishOnly",
+    "lerna:publish:yes": "yarn run prepublishOnly:root && lerna publish --yes --bump patch && yarn run postpublishOnly",
+    "preversion": "yt ws run test",
+    "prepare:fix-ws-links": "ynpx --quiet @yarn-tool/fix-ws-links",
+    "prepublishOnly": "echo prepublishOnly",
+    "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
+    "prepublishOnly:lockfile": "ynpx --quiet sync-lockfile",
+    "prepublishOnly:root": "yarn run prepublishOnly:check-bin && yarn run prepare:fix-ws-links",
+    "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
+    "postpublishOnly": "echo postpublishOnly",
+    "ncu": "yarn run ncu:root && yarn run ncu:ws",
+    "ncu:root": "yarn-tool ncu -u",
+    "ncu:ws": "yarn-tool ws exec yarn-tool ncu -- -u",
+    "sort-package-json": "yarn run sort-package-json:root && yarn run sort-package-json:ws",
+    "sort-package-json:root": "yarn-tool sort",
+    "sort-package-json:ws": "yarn-tool ws sort",
+    "tsc:showConfig": "ynpx get-current-tsconfig -p"
+  },
+  "resolutions": {},
+  "dependencies": {
+    "axios": "^0.21.1",
+    "jsdom": "^17.0.0",
+    "ts-type": "^1.2.39",
+    "tslib": "^2.3.1"
+  },
+  "devDependencies": {
+    "@bluelovers/tsconfig": "^1.0.25",
+    "@types/jest": "^27.0.1",
+    "@types/jsdom": "^16.2.13",
+    "@types/node": "*",
+    "@types/whatwg-mimetype": "^2.1.1"
+  },
+  "peerDependencies": {
+    "@bluelovers/conventional-changelog-bluelovers": "*",
+    "@yarn-tool/require-resolve": "*",
+    "lerna": "*",
+    "yarn": "*",
+    "yarn-tool": "*",
+    "ynpx": "*"
+  }
+}

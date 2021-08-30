@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test 1`] = `
+MIMEType {
+  "_parameters": MIMETypeParameters {
+    "_map": Map {
+      "charset" => "utf-8",
+    },
+  },
+  "_subtype": "html",
+  "_type": "text",
+}
+`;
+
+exports[`test 2`] = `"utf-8"`;
